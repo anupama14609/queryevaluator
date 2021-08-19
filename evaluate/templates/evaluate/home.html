@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Pyscript Tags Analyzer{% endblock title %}
+
+{% block active %} active{% endblock active %}
+
+{% block content %}
+<div class="col-md-8 p-4 text-white">       
+    <h4 class="fst-italic">Mathematical Expression Evaluator</h4>
+   
+    <hr class="bg-light">
+    <h1 class="display-4 fst-italic">Enter Your Query</h1>
+
+    <form action="{% url 'evaluate-query' %}" method="GET">
+        <div class="form-group">
+            <label for="qry"></label>
+            <input type="text" class="form-control" id="qry" name='q' value="{{request.GET.qry}}" placeholder="Phone Number...........">
+        </div>
+        <button type="submit" class="btn btn-primary">Evaluate</button>
+        <input type="reset" class="btn btn-danger" value="Reset">
+        
+    </form> 
+    
+
+    {% if error %}
+    <div class="alert alert-danger my-4" role="alert">
+        <h4 class="alert-heading">Please Provide Valid Input</h4>
+       
+    </div>
+    {% endif %}
+    {% if result %}
+        <div class="alert alert-success my-4">
+            <h1>Result: <span class="badge badge-secondary">{{q}} = {{ans}}</span></h1>
+        </div>
+   
+    {% endif %}
+ </div>
+{% endblock content %}
+
